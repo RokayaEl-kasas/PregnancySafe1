@@ -1,0 +1,57 @@
+PregnancySafe Source Download Log
+============================================================
+
+Successful: 41
+Failed:     0
+Skipped:    1
+
+SUCCESSFUL
+------------------------------------------------------------
+DOWNLOADED: data\raw\nausea_vomiting\medications\doxylamine_pyridoxine\NBK582681_9951a86232.html <- https://www.ncbi.nlm.nih.gov/books/NBK582681/
+DOWNLOADED: data\raw\nausea_vomiting\medications\metoclopramide\NBK582840_789f5ed89a.html <- https://www.ncbi.nlm.nih.gov/books/NBK582840/
+DOWNLOADED: data\raw\nausea_vomiting\medications\ondansetron\NBK582886_7dc648509a.html <- https://www.ncbi.nlm.nih.gov/books/NBK582886/
+DOWNLOADED: data\raw\nausea_vomiting\medications\promethazine\NBK582916_da733b9fdc.html <- https://www.ncbi.nlm.nih.gov/books/NBK582916/
+DOWNLOADED: data\raw\gerd_heartburn\medications\famotidine\NBK582699_b87213dda9.html <- https://www.ncbi.nlm.nih.gov/books/NBK582699/
+DOWNLOADED: data\raw\gerd_heartburn\medications\omeprazole_esomeprazole\NBK582884_2b9a0559b2.html <- https://www.ncbi.nlm.nih.gov/books/NBK582884/
+DOWNLOADED: data\raw\gerd_heartburn\medications\proton_pump_inhibitors\NBK582920_074b81cf37.html <- https://www.ncbi.nlm.nih.gov/books/NBK582920/
+DOWNLOADED: data\raw\hypertension\medications\labetalol\NBK582779_8ade215bad.html <- https://www.ncbi.nlm.nih.gov/books/NBK582779/
+DOWNLOADED: data\raw\hypertension\medications\nifedipine\NBK582876_35f0d295e4.html <- https://www.ncbi.nlm.nih.gov/books/NBK582876/
+DOWNLOADED: data\raw\hypertension\medications\methyldopa\NBK501026_e535a078f2.html <- https://www.ncbi.nlm.nih.gov/books/NBK501026/
+DOWNLOADED: data\raw\hypertension\medications\ace_inhibitors\NBK582517_7cd9bb0ded.html <- https://www.ncbi.nlm.nih.gov/books/NBK582517/
+DOWNLOADED: data\raw\hypertension\medications\nsaids_pregnancy_warning\fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic_b2038ac675.html <- https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic
+DOWNLOADED: data\raw\uti\medications\nitrofurantoin\NBK605076_659cd7d657.html <- https://www.ncbi.nlm.nih.gov/books/NBK605076/
+DOWNLOADED: data\raw\uti\medications\nitrofurantoin_g6pd\NBK501053_b9ea5f6720.html <- https://www.ncbi.nlm.nih.gov/sites/books/NBK501053/
+DOWNLOADED: data\raw\uti\medications\cephalexin\NBK605062_929f8989f8.html <- https://www.ncbi.nlm.nih.gov/books/NBK605062/
+DOWNLOADED: data\raw\uti\medications\uti_medication_reference\31302868_47e7b13ccd.html <- https://pubmed.ncbi.nlm.nih.gov/31302868/
+DOWNLOADED: data\raw\gestational_diabetes\medications\metformin\NBK582828_9e4a10c5b1.html <- https://www.ncbi.nlm.nih.gov/books/NBK582828/
+DOWNLOADED: data\raw\gestational_diabetes\medications\insulin_glargine\NBK605077_2dfefbdee8.html <- https://www.ncbi.nlm.nih.gov/books/NBK605077/
+DOWNLOADED: data\raw\gestational_diabetes\medications\insulin_aspart\NBK605063_6887f684f1.html <- https://www.ncbi.nlm.nih.gov/books/NBK605063/
+DOWNLOADED: data\raw\gestational_diabetes\medications\glyburide\NBK500865_b0881e6dcc.html <- https://www.ncbi.nlm.nih.gov/books/NBK500865/
+DOWNLOADED: data\raw\gestational_diabetes\medications\insulin\NBK582729_06bd6e0c2f.html <- https://www.ncbi.nlm.nih.gov/books/NBK582729/
+DOWNLOADED: data\raw\anemia\medications\iron\NBK614541_a257b2282c.html <- https://www.ncbi.nlm.nih.gov/books/NBK614541/
+DOWNLOADED: data\raw\thyroid\medications\methimazole\NBK614540_b712d70315.html <- https://www.ncbi.nlm.nih.gov/books/NBK614540/
+DOWNLOADED: data\raw\thyroid\medications\propylthiouracil\NBK582545_877f03a750.html <- https://www.ncbi.nlm.nih.gov/books/NBK582545/
+DOWNLOADED: data\raw\thyroid\medications\levothyroxine\NBK501003_6523dc3397.html <- https://www.ncbi.nlm.nih.gov/books/NBK501003/
+DOWNLOADED: data\raw\thyroid\medications\hypothyroidism_pregnancy\hypothyroidism-in-pregnancy_7bf7b53794.html <- https://www.thyroid.org/hypothyroidism-in-pregnancy/
+DOWNLOADED: data\raw\antenatal_care\guidelines\9789241549912_244ef65e44.html <- https://www.who.int/publications/i/item/9789241549912
+DOWNLOADED: data\raw\antenatal_care\guidelines\content_d826c88a51.html <- https://iris.who.int/server/api/core/bitstreams/9dccde13-3593-4a22-9237-61abe5a3c6b7/content
+DOWNLOADED: data\raw\antenatal_care\guidelines\ng201_2902965e5e.html <- https://www.nice.org.uk/guidance/ng201
+DOWNLOADED: data\raw\antenatal_care\guidelines\antenatal-care-pdf-66143709695941_fbfb4e6aa1.pdf <- https://www.nice.org.uk/guidance/ng201/resources/antenatal-care-pdf-66143709695941
+DOWNLOADED: data\raw\nausea_vomiting\guidelines\nausea-and-vomiting-of-pregnancy_6a4d8bab47.html <- https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/01/nausea-and-vomiting-of-pregnancy
+DOWNLOADED: data\raw\hypertension\guidelines\NBK140561_a65c976901.html <- https://www.ncbi.nlm.nih.gov/books/NBK140561/
+DOWNLOADED: data\raw\hypertension\guidelines\pdf_56fa7572d5.pdf <- https://www.ncbi.nlm.nih.gov/books/n/whoeclampsia/pdf/
+DOWNLOADED: data\raw\hypertension\guidelines\ng133_f2fd6bc7bc.html <- https://www.nice.org.uk/guidance/ng133
+DOWNLOADED: data\raw\hypertension\guidelines\hypertension-in-pregnancy-diagnosis-and-management-pdf-66141717671365_5806790080.pdf <- https://www.nice.org.uk/guidance/ng133/resources/hypertension-in-pregnancy-diagnosis-and-management-pdf-66141717671365
+DOWNLOADED: data\raw\anemia\guidelines\anemia-in-pregnancy_d51cbc3ec9.html <- https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2021/08/anemia-in-pregnancy
+DOWNLOADED: data\raw\anemia\guidelines\34293770_6bcb157466.html <- https://pubmed.ncbi.nlm.nih.gov/34293770/
+DOWNLOADED: data\raw\uti\guidelines\urinary-tract-infections-in-pregnant-individuals_668eaddcf9.html <- https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals
+DOWNLOADED: data\raw\thyroid\guidelines\42219800_b74981c154.html <- https://pubmed.ncbi.nlm.nih.gov/42219800/
+DOWNLOADED: data\raw\varicose_veins\guidelines\CD001066_interventions-varicose-veins-and-leg-oedema-pregnancy_f3d00dc9c7.html <- https://www.cochrane.org/evidence/CD001066_interventions-varicose-veins-and-leg-oedema-pregnancy
+DOWNLOADED: data\raw\varicose_veins\guidelines\NBK327998_443beb674e.html <- https://www.ncbi.nlm.nih.gov/books/NBK327998/
+
+FAILED
+------------------------------------------------------------
+
+SKIPPED
+------------------------------------------------------------
+UNCLASSIFIED: https://www.ncbi.nlm.nih.gov/books/NBK582980/

@@ -1,0 +1,157 @@
+# PregnancySafe — central configuration
+# All disease sources are documented in full at docs/PregnancySafe_Medical_Sources.md
+# All medication sources are documented in full at docs/PregnancySafe_Medication_Links.md
+
+project:
+  name: PregnancySafe
+  version: "0.1.0"
+
+embeddings:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  device: "cpu"          # set to "cuda" if a GPU is available
+  batch_size: 8
+
+chunking:
+  chunk_size: 500          # characters per chunk
+  chunk_overlap: 75        # overlap between consecutive chunks
+  strategy: "recursive"    # recursive character splitting, sentence-boundary aware
+
+vectorstore:
+  backend: "chromadb"
+  persist_directory: "data/vectorstore"
+  collection_name: "pregnancysafe_knowledge"
+  distance_metric: "cosine"
+
+retrieval:
+  top_k: 5
+  score_threshold: 0.35    # minimum similarity to accept a chunk as relevant
+
+# ---------------------------------------------------------------------------
+# Disease knowledge sources — status flags mirror docs/PregnancySafe_Medical_Sources.md
+#   verified_open   -> confirmed free full text, safe to ingest directly
+#   manual_check    -> real link, but bot-detection/login wall; download manually first
+#   restricted      -> membership required; abstract only, use as supplementary metadata
+# ---------------------------------------------------------------------------
+disease_sources:
+  antenatal_care:
+    label_ar: "رعاية الحمل العامة"
+    label_en: "Antenatal Care"
+    folder: "data/raw/antenatal_care"
+    sources:
+      - name: "WHO Recommendations on Antenatal Care for a Positive Pregnancy Experience"
+        url: "https://www.who.int/publications/i/item/9789241549912"
+        pdf_url: "https://iris.who.int/server/api/core/bitstreams/9dccde13-3593-4a22-9237-61abe5a3c6b7/content"
+        status: "verified_open"
+      - name: "NICE NG201 — Antenatal Care"
+        url: "https://www.nice.org.uk/guidance/ng201"
+        pdf_url: "https://www.nice.org.uk/guidance/ng201/resources/antenatal-care-pdf-66143709695941"
+        status: "manual_check"
+
+  hypertension:
+    label_ar: "ارتفاع الضغط وتسمم الحمل"
+    label_en: "Hypertension / Preeclampsia"
+    folder: "data/raw/hypertension"
+    sources:
+      - name: "WHO Recommendations for Prevention and Treatment of Pre-eclampsia and Eclampsia"
+        url: "https://www.ncbi.nlm.nih.gov/books/NBK140561/"
+        pdf_url: "https://www.ncbi.nlm.nih.gov/books/n/whoeclampsia/pdf/"
+        status: "verified_open"
+      - name: "NICE NG133 — Hypertension in Pregnancy"
+        url: "https://www.nice.org.uk/guidance/ng133"
+        pdf_url: "https://www.nice.org.uk/guidance/ng133/resources/hypertension-in-pregnancy-diagnosis-and-management-pdf-66141717671365"
+        status: "manual_check"
+
+  nausea_vomiting:
+    label_ar: "الغثيان والقيء"
+    label_en: "Nausea & Vomiting"
+    folder: "data/raw/nausea_vomiting"
+    sources:
+      - name: "ACOG Practice Bulletin No. 189 — Nausea and Vomiting of Pregnancy"
+        url: "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/01/nausea-and-vomiting-of-pregnancy"
+        doi: "10.1097/AOG.0000000000002456"
+        status: "restricted"
+        fallback_url: "https://pubmed.ncbi.nlm.nih.gov/?term=ACOG+Practice+Bulletin+189+nausea+vomiting+pregnancy"
+
+  gerd_heartburn:
+    label_ar: "الحموضة وارتجاع المريء"
+    label_en: "Heartburn / GERD"
+    folder: "data/raw/gerd_heartburn"
+    sources: []
+    # No dedicated WHO/NICE/ACOG guideline PDF documented yet for GERD in
+    # pregnancy specifically — medication citations for this disease rely on
+    # the download manifest (MotherToBaby pages for famotidine, omeprazole/
+    # esomeprazole, PPIs) rather than a single guideline `sources` entry.
+    # Add a guideline source here if one gets documented later.
+
+  uti:
+    label_ar: "التهابات المسالك البولية"
+    label_en: "Urinary Tract Infections"
+    folder: "data/raw/uti"
+    sources:
+      - name: "ACOG Clinical Consensus No. 4 — UTI in Pregnant Individuals"
+        url: "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals"
+        status: "verified_open"
+
+  gestational_diabetes:
+    label_ar: "سكري الحمل"
+    label_en: "Gestational Diabetes"
+    folder: "data/raw/gestational_diabetes"
+    sources:
+      - name: "ADA Standards of Care 2026"
+        url: "reused_from_prior_hackathon_project"
+        status: "verified_open"
+        note: "Already downloaded for the eczema/hypertension hackathon project — copy the PDF into this folder."
+      - name: "NICE NG28"
+        url: "reused_from_prior_hackathon_project"
+        status: "verified_open"
+        note: "Already downloaded for the eczema/hypertension hackathon project — copy the PDF into this folder."
+
+  anemia:
+    label_ar: "الأنيميا ونقص الحديد"
+    label_en: "Anemia / Iron Deficiency"
+    folder: "data/raw/anemia"
+    sources:
+      - name: "ACOG Practice Bulletin No. 233 — Anemia in Pregnancy"
+        url: "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2021/08/anemia-in-pregnancy"
+        doi: "10.1097/AOG.0000000000004477"
+        status: "restricted"
+        fallback_url: "https://pubmed.ncbi.nlm.nih.gov/34293770/"
+
+  thyroid:
+    label_ar: "اضطرابات الغدة الدرقية"
+    label_en: "Thyroid Disorders"
+    folder: "data/raw/thyroid"
+    sources:
+      - name: "ATA 2026 Guidelines for Thyroid Disease in Preconception, Pregnancy, and Postpartum"
+        url: "https://pubmed.ncbi.nlm.nih.gov/42219800/"
+        status: "manual_check"
+        note: "Supersedes the 2017 ATA guideline — always cite the 2026 version."
+
+  varicose_veins:
+    label_ar: "الدوالي وتورم الساقين"
+    label_en: "Varicose Veins / Leg Edema"
+    folder: "data/raw/varicose_veins"
+    sources:
+      - name: "Cochrane Review — Interventions for Varicose Veins and Leg Oedema in Pregnancy"
+        url: "https://www.cochrane.org/evidence/CD001066_interventions-varicose-veins-and-leg-oedema-pregnancy"
+        doi: "10.1002/14651858.CD001066.pub3"
+        status: "verified_open"
+      - name: "NICE CG168 — Varicose Veins in the Legs"
+        url: "https://www.ncbi.nlm.nih.gov/books/NBK327998/"
+        status: "verified_open"
+
+# ---------------------------------------------------------------------------
+# Medication sources — see docs/PregnancySafe_Medication_Links.md for the full,
+# per-drug list (17/18 drugs confirmed via MotherToBaby, 1 via LactMed/ATA).
+# medication_safety.json holds the structured tier data consumed by the app.
+# ---------------------------------------------------------------------------
+medication_sources:
+  primary: "MotherToBaby (NCBI Bookshelf, NIH/NLM)"
+  primary_index_url: "https://www.ncbi.nlm.nih.gov/books/NBK582980/"
+  fallback: "LactMed (NCBI) — used when no dedicated MotherToBaby fact sheet exists"
+  structured_data_file: "data/medication_safety.json"
+
+safety:
+  disclaimer_required: true
+  red_flags_file: "src/pregnancysafe/safety/red_flags.py"
+  out_of_scope_refusal: true

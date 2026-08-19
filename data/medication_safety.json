@@ -1,0 +1,392 @@
+{
+  "schema_version": "1.0",
+  "tier_definitions": {
+    "green": {
+      "label_ar": "يمكن استخدامه في حالات معينة",
+      "label_en": "Generally usable in appropriate cases"
+    },
+    "yellow": {
+      "label_ar": "فقط تحت إشراف الطبيب",
+      "label_en": "Physician supervision required"
+    },
+    "orange": {
+      "label_ar": "يُفضّل تجنبه إلا لضرورة",
+      "label_en": "Avoid unless necessary"
+    },
+    "red": {
+      "label_ar": "ممنوع / غير موصى به",
+      "label_en": "Contraindicated / not recommended"
+    }
+  },
+
+  "diseases": {
+    "nausea_vomiting": {
+      "label_ar": "الغثيان والقيء",
+      "label_en": "Nausea & Vomiting of Pregnancy",
+      "medications": [
+        {
+          "id": "doxylamine_pyridoxine",
+          "name": "Doxylamine + Pyridoxine (Vitamin B6)",
+          "tier": "green",
+          "notes_ar": "خط أول، أكتر دواء مدروس في الحمل",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582681/"
+        },
+        {
+          "id": "metoclopramide",
+          "name": "Metoclopramide",
+          "tier": "yellow",
+          "notes_ar": "خط ثاني تحت إشراف",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582840/"
+        },
+        {
+          "id": "promethazine",
+          "name": "Promethazine / Antihistamines",
+          "tier": "yellow",
+          "notes_ar": "خط ثاني",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582916/"
+        },
+        {
+          "id": "ondansetron",
+          "name": "Ondansetron",
+          "tier": "yellow",
+          "notes_ar": "بيانات متضاربة عن مخاطر قلبية/شفة أرنبية بجرعات مبكرة — قرار الطبيب",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582886/"
+        },
+        {
+          "id": "corticosteroids_methylprednisolone",
+          "name": "Corticosteroids (e.g. Methylprednisolone)",
+          "tier": "red",
+          "notes_ar": "تجنّب قبل الأسبوع 10 (خطر شفة أرنبية)؛ آخر الحلول في hyperemesis فقط",
+          "trimester_restriction": "avoid_before_week_10",
+          "source_name": null,
+          "source_url": null
+        }
+      ]
+    },
+
+    "gerd_heartburn": {
+      "label_ar": "الحموضة وارتجاع المريء",
+      "label_en": "Heartburn / GERD",
+      "medications": [
+        {
+          "id": "antacids",
+          "name": "Antacids (Calcium carbonate, Magnesium hydroxide)",
+          "tier": "green",
+          "notes_ar": "خط أول",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "famotidine",
+          "name": "Famotidine (H2 blocker)",
+          "tier": "green",
+          "notes_ar": "آمن، Ranitidine اتسحب عالميًا من الأسواق (مش خيار)",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582699/"
+        },
+        {
+          "id": "ppi_omeprazole",
+          "name": "PPIs (Omeprazole / Esomeprazole)",
+          "tier": "yellow",
+          "notes_ar": "خط تاني لو مفيش استجابة",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582884/"
+        }
+      ]
+    },
+
+    "hypertension": {
+      "label_ar": "ارتفاع الضغط وتسمم الحمل",
+      "label_en": "Hypertension / Preeclampsia",
+      "medications": [
+        {
+          "id": "labetalol",
+          "name": "Labetalol",
+          "tier": "green",
+          "notes_ar": "خط أول (NICE NG133)",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582779/"
+        },
+        {
+          "id": "nifedipine",
+          "name": "Nifedipine",
+          "tier": "green",
+          "notes_ar": "بديل لو Labetalol مش مناسب",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582876/"
+        },
+        {
+          "id": "methyldopa",
+          "name": "Methyldopa",
+          "tier": "green",
+          "notes_ar": "بديل تاني",
+          "source_name": "LactMed (no dedicated MotherToBaby sheet)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK501026/"
+        },
+        {
+          "id": "magnesium_sulfate",
+          "name": "Magnesium Sulfate",
+          "tier": "green",
+          "notes_ar": "لمنع/علاج التشنجات (eclampsia/severe preeclampsia)",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "low_dose_aspirin",
+          "name": "Low-dose Aspirin (81mg)",
+          "tier": "green",
+          "notes_ar": "للوقاية من preeclampsia عند وجود عوامل خطر، تحت إشراف طبي",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "ace_inhibitors_arbs",
+          "name": "ACE Inhibitors / ARBs",
+          "tier": "red",
+          "notes_ar": "ممنوعة تمامًا — سمية جنينية/كلوية (fetotoxic)",
+          "source_name": "MotherToBaby (drug class)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582517/"
+        },
+        {
+          "id": "diuretics",
+          "name": "Diuretics",
+          "tier": "red",
+          "notes_ar": "غير موصى بها للوقاية أو العلاج الروتيني",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "nsaids",
+          "name": "NSAIDs (Ibuprofen, Naproxen, Diclofenac)",
+          "tier": "red",
+          "notes_ar": "ممنوعة من الأسبوع 20 فصاعدًا — خطر قلة السائل الأمنيوسي ومشاكل كلوية جنينية",
+          "trimester_restriction": "contraindicated_week_20_plus",
+          "source_name": "FDA Drug Safety Communication",
+          "source_url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic"
+        }
+      ]
+    },
+
+    "uti": {
+      "label_ar": "التهابات المسالك البولية",
+      "label_en": "Urinary Tract Infections",
+      "medications": [
+        {
+          "id": "nitrofurantoin",
+          "name": "Nitrofurantoin",
+          "tier": "green",
+          "notes_ar": "خط أول، لكن تجنّب قرب الأسبوع 36-37 (خطر نظري لأنيميا انحلالية عند الجنين)",
+          "trimester_restriction": "caution_after_week_36",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK605076/"
+        },
+        {
+          "id": "cephalexin",
+          "name": "Cephalexin",
+          "tier": "green",
+          "notes_ar": "خط أول بديل",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK605062/"
+        },
+        {
+          "id": "fosfomycin",
+          "name": "Fosfomycin",
+          "tier": "green",
+          "notes_ar": "جرعة واحدة، فعالية جيدة",
+          "source_name": "PubMed reference study (no dedicated MotherToBaby sheet)",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/31302868/"
+        },
+        {
+          "id": "amoxicillin_ampicillin_empiric",
+          "name": "Amoxicillin / Ampicillin (empiric, no culture)",
+          "tier": "orange",
+          "notes_ar": "تجنّب كخط تجريبي أول لمقاومة E. coli العالية",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "tmp_smx",
+          "name": "Trimethoprim-Sulfamethoxazole",
+          "tier": "orange",
+          "notes_ar": "تجنّب الترايمستر الأول (مضاد فوليك) والقرب من الولادة (خطر يرقان/kernicterus)",
+          "trimester_restriction": "avoid_first_trimester_and_near_term",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "fluoroquinolones",
+          "name": "Fluoroquinolones (e.g. Ciprofloxacin)",
+          "tier": "red",
+          "notes_ar": "ممنوعة — خطر على غضاريف الجنين",
+          "source_name": null,
+          "source_url": null
+        }
+      ]
+    },
+
+    "gestational_diabetes": {
+      "label_ar": "سكري الحمل",
+      "label_en": "Gestational Diabetes",
+      "medications": [
+        {
+          "id": "insulin",
+          "name": "Insulin (Glargine / Aspart)",
+          "tier": "green",
+          "notes_ar": "المعيار الذهبي (Gold standard)",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK605077/"
+        },
+        {
+          "id": "metformin",
+          "name": "Metformin",
+          "tier": "yellow",
+          "notes_ar": "يعبر المشيمة، استخدام متزايد لكن تحت إشراف",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582828/"
+        },
+        {
+          "id": "glyburide",
+          "name": "Glyburide",
+          "tier": "yellow",
+          "notes_ar": "أقل تفضيلًا حاليًا (بيانات عن نقص سكر وتضخم الجنين)",
+          "source_name": "LactMed (no dedicated MotherToBaby sheet)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK500865/"
+        }
+      ]
+    },
+
+    "anemia": {
+      "label_ar": "الأنيميا ونقص الحديد",
+      "label_en": "Anemia / Iron Deficiency",
+      "medications": [
+        {
+          "id": "oral_iron",
+          "name": "Ferrous Sulfate / Ferrous Gluconate (oral)",
+          "tier": "green",
+          "notes_ar": "خط أول",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK614541/"
+        },
+        {
+          "id": "iv_iron",
+          "name": "IV Iron (Ferric Carboxymaltose)",
+          "tier": "yellow",
+          "notes_ar": "لو مفيش استجابة للفموي أو سوء امتصاص",
+          "source_name": null,
+          "source_url": null
+        }
+      ]
+    },
+
+    "thyroid": {
+      "label_ar": "اضطرابات الغدة الدرقية",
+      "label_en": "Thyroid Disorders",
+      "medications": [
+        {
+          "id": "levothyroxine",
+          "name": "Levothyroxine",
+          "tier": "green",
+          "notes_ar": "آمن وضروري لعلاج قصور الغدة",
+          "source_name": "LactMed / American Thyroid Association",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK501003/"
+        },
+        {
+          "id": "ptu",
+          "name": "Propylthiouracil (PTU)",
+          "tier": "yellow",
+          "notes_ar": "مفضّل في الثلث الأول لفرط النشاط (Methimazole فيه خطر تشوهات خلقية مبكرًا)",
+          "trimester_restriction": "preferred_first_trimester",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK582545/"
+        },
+        {
+          "id": "methimazole",
+          "name": "Methimazole",
+          "tier": "yellow",
+          "notes_ar": "يتحول لـ PTU بعد الثلث الأول (PTU خطر سمية كبدية على المدى الطويل)",
+          "trimester_restriction": "switch_from_ptu_after_first_trimester",
+          "source_name": "MotherToBaby",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK614540/"
+        },
+        {
+          "id": "radioactive_iodine",
+          "name": "Radioactive Iodine (I-131)",
+          "tier": "red",
+          "notes_ar": "ممنوع تمامًا طول فترة الحمل",
+          "source_name": null,
+          "source_url": null
+        }
+      ]
+    },
+
+    "varicose_veins": {
+      "label_ar": "الدوالي وتورم الساقين",
+      "label_en": "Varicose Veins / Leg Edema",
+      "medications": [
+        {
+          "id": "compression_stockings",
+          "name": "Compression Stockings",
+          "tier": "green",
+          "notes_ar": "غير دوائي، خط أول",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "leg_elevation_exercise",
+          "name": "Leg Elevation / Light Exercise",
+          "tier": "green",
+          "notes_ar": "غير دوائي",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "rutosides",
+          "name": "Rutosides",
+          "tier": "yellow",
+          "notes_ar": "بيانات أمان محدودة (دراسة واحدة صغيرة فقط)",
+          "source_name": null,
+          "source_url": null
+        },
+        {
+          "id": "anticoagulants",
+          "name": "Anticoagulants",
+          "tier": "red",
+          "notes_ar": "فقط لو فيه تشخيص DVT فعلي، مش للدوالي العادية",
+          "source_name": null,
+          "source_url": null
+        }
+      ]
+    }
+  },
+
+  "red_flags": [
+    {
+      "id": "preeclampsia_warning",
+      "pattern_ar": "صداع شديد + زغللة/اضطراب رؤية + ضغط مرتفع",
+      "suspected_condition": "Preeclampsia",
+      "action_ar": "طوارئ فورية — التواصل مع الطبيب أو الطوارئ حالًا"
+    },
+    {
+      "id": "pyelonephritis_warning",
+      "pattern_ar": "حمى + ألم بالخاصرة",
+      "suspected_condition": "Pyelonephritis",
+      "action_ar": "طوارئ فورية — التواصل مع الطبيب أو الطوارئ حالًا"
+    },
+    {
+      "id": "bleeding_warning",
+      "pattern_ar": "نزيف مهبلي أو تقلصات شديدة",
+      "suspected_condition": "Possible obstetric emergency",
+      "action_ar": "طوارئ فورية"
+    },
+    {
+      "id": "hyperemesis_warning",
+      "pattern_ar": "قيء شديد مع عدم القدرة على شرب سوائل",
+      "suspected_condition": "Hyperemesis Gravidarum",
+      "action_ar": "طوارئ فورية — خطر جفاف"
+    }
+  ]
+}

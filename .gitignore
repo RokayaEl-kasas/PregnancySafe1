@@ -1,0 +1,31 @@
+# Environments
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Data (raw PDFs and generated indexes should not be committed — too large / licensing)
+data/raw/**/*.pdf
+data/processed/*.json
+data/processed/*.parquet
+data/vectorstore/*
+!data/vectorstore/.gitkeep
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Streamlit
+.streamlit/secrets.toml
