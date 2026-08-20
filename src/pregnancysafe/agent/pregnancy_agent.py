@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Callable, Optional
-
+from pregnancysafe.safety.disclaimers import attach_disclaimer
 from pregnancysafe.retrieval.citation_formatter import format_citations
 from pregnancysafe.retrieval.retriever import (
     RetrievalResult,
@@ -54,16 +54,6 @@ AnswerComposer = Callable[
 MIN_AGENT_RELEVANCE_SCORE = 0.50
 
 
-# ---------------------------------------------------------------------------
-# English disclaimer
-# ---------------------------------------------------------------------------
-
-ENGLISH_DISCLAIMER = (
-    "\n\nDisclaimer: This information is for educational purposes only "
-    "and is based on retrieved medical guidance. It is not a substitute "
-    "for evaluation or treatment by a qualified healthcare professional. "
-    "Clinical decisions should be made by the patient's treating clinician."
-)
 
 
 # ---------------------------------------------------------------------------
@@ -607,7 +597,7 @@ class PregnancyAgent:
                 for match in red_flag_matches
             ]
 
-            answer = (
+            answer = attach_disclaimer(
                 "The symptoms described may indicate a "
                 "potential medical emergency:\n\n"
                 + "\n".join(lines)
@@ -615,7 +605,7 @@ class PregnancyAgent:
                 "Please contact your healthcare professional "
                 "or seek emergency medical care immediately. "
                 "PregnancySafe is not a substitute for emergency care."
-                + ENGLISH_DISCLAIMER
+            
             )
 
             return AgentResponse(
@@ -633,7 +623,7 @@ class PregnancyAgent:
             and disease_id not in self._known_diseases
         ):
 
-            answer = (
+            answer = attach_disclaimer(
                 "This question is outside the current scope "
                 "of PregnancySafe.\n\n"
                 "Available disease areas: "
@@ -643,7 +633,7 @@ class PregnancyAgent:
                 + "\n\n"
                 "Please consult a qualified healthcare professional "
                 "for conditions outside the available evidence base."
-                + ENGLISH_DISCLAIMER
+                
             )
 
             return AgentResponse(

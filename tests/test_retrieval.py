@@ -90,8 +90,7 @@ class TestRetrieverThreshold:
 
 class TestCitationFormatter:
     def test_empty_hits_returns_placeholder_message(self):
-        assert "لا توجد مصادر" in format_citations([])
-
+        assert "No sources were retrieved for this question." in format_citations([])
     def test_duplicate_sources_deduplicated(self):
         from pregnancysafe.retrieval.retriever import RetrievalResult
 

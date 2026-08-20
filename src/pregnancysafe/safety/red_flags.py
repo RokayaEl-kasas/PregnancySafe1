@@ -1,14 +1,12 @@
 """Hard-coded red-flag symptom screening.
 
-This runs BEFORE retrieval. If a user's described symptoms match a red flag,
-the agent must short-circuit straight to an emergency-referral message and
-skip the normal RAG answer entirely — a well-cited but leisurely RAG
-response is the wrong output when the input describes a possible
-preeclampsia or hemorrhage emergency.
+This module runs before retrieval. If a user's symptoms match a red flag,
+the agent immediately returns an emergency-referral response and skips
+the normal RAG pipeline.
 
-Matching is deliberately simple (keyword co-occurrence) rather than another
-LLM call: red-flag detection needs to be fast, auditable, and not dependent
-on a model call that could fail or be slow.
+Matching is deliberately implemented as keyword co-occurrence rather
+than an LLM call because red-flag detection must be fast, auditable,
+deterministic, and independent of model availability.
 """
 
 from __future__ import annotations
@@ -18,64 +16,136 @@ from dataclasses import dataclass
 from pregnancysafe.schemas import RedFlag
 from pregnancysafe.utils.config_loader import load_red_flags
 
-# Each red flag from data/medication_safety.json is matched against a set of
-# keyword groups; ALL groups must have at least one hit for the flag to fire.
-# This keeps false positives low (e.g. "headache" alone shouldn't trigger the
-# preeclampsia flag — it needs the visual-disturbance/BP co-occurrence too).
-_KEYWORD_GROUPS_AR: dict[str, list[list[str]]] = {
+
+# Each red flag is matched against multiple keyword groups.
+#
+# At least one keyword from every group must appear for the red flag
+# to trigger. This reduces false positives.
+#
+# Example:
+# "headache" alone should NOT trigger preeclampsia.
+# The query must contain both a severe-headache keyword and a
+# vision-disturbance keyword.
+_KEYWORD_GROUPS: dict[str, list[list[str]]] = {
     "preeclampsia_warning": [
-        ["صداع شديد", "صداع قوي", "صداع مستمر"],
-        ["زغللة", "اضطراب رؤية", "رؤية ضبابية", "وميض ضوء"],
+        [
+            "severe headache",
+            "strong headache",
+            "persistent headache",
+        ],
+        [
+            "blurred vision",
+            "visual disturbance",
+            "vision problems",
+            "flashing lights",
+        ],
     ],
     "pyelonephritis_warning": [
-        ["حمى", "سخونية", "ارتفاع حرارة"],
-        ["ألم بالخاصرة", "ألم في الظهر", "وجع الكلى", "خاصرة", "الكلى"],
+        [
+            "fever",
+            "high temperature",
+        ],
+        [
+            "flank pain",
+            "back pain",
+            "kidney pain",
+            "side pain",
+        ],
     ],
     "bleeding_warning": [
-        ["نزيف", "نزول دم"],
+        [
+            "bleeding",
+            "vaginal bleeding",
+        ],
+        [
+            "blood loss",
+            "heavy bleeding",
+        ],
     ],
     "hyperemesis_warning": [
-        ["قيء شديد", "ترجيع مستمر", "قيء متكرر"],
-        ["عدم القدرة على شرب", "جفاف", "مش قادرة اشرب"],
+        [
+            "severe vomiting",
+            "persistent vomiting",
+            "repeated vomiting",
+        ],
+        [
+            "unable to drink",
+            "dehydration",
+            "cannot keep fluids down",
+        ],
     ],
 }
 
 
 @dataclass
 class RedFlagMatch:
+    """Represents a detected red-flag condition."""
+
     red_flag: RedFlag
     matched_keywords: list[str]
 
 
 def screen_for_red_flags(user_text: str) -> list[RedFlagMatch]:
-    """Scan free-text symptom description for red-flag keyword co-occurrence.
+    """Scan user text for red-flag keyword co-occurrence.
 
-    Returns a list (usually empty) of RedFlagMatch. The agent should treat
-    ANY non-empty result as "stop, do not answer normally, refer to
-    emergency care" — see agent/pregnancy_agent.py.
+    The function returns a list of RedFlagMatch objects.
+
+    If the returned list is not empty, the agent should stop normal
+    processing and refer the user to appropriate emergency medical care.
+
+    Args:
+        user_text: Free-text description of the user's symptoms.
+
+    Returns:
+        A list of detected red flags. Returns an empty list when no
+        red flag is detected or when the input is empty.
     """
-    text = user_text.strip()
+
+    text = user_text.strip().lower()
+
     if not text:
         return []
 
-    red_flags_by_id = {rf.id: rf for rf in load_red_flags()}
+    red_flags_by_id = {
+        red_flag.id: red_flag
+        for red_flag in load_red_flags()
+    }
+
     matches: list[RedFlagMatch] = []
 
-    for flag_id, keyword_groups in _KEYWORD_GROUPS_AR.items():
+    for flag_id, keyword_groups in _KEYWORD_GROUPS.items():
         red_flag = red_flags_by_id.get(flag_id)
+
+        # Keep the detector robust if the configuration and code
+        # become temporarily out of sync.
         if red_flag is None:
-            continue  # data file and code are out of sync; skip rather than crash
+            continue
 
         matched_keywords: list[str] = []
         all_groups_hit = True
+
         for group in keyword_groups:
-            hit = next((kw for kw in group if kw in text), None)
+            hit = next(
+                (
+                    keyword
+                    for keyword in group
+                    if keyword in text
+                ),
+                None,
+            )
+
             if hit is None:
                 all_groups_hit = False
                 break
+
             matched_keywords.append(hit)
 
         if all_groups_hit:
-            matches.append(RedFlagMatch(red_flag=red_flag, matched_keywords=matched_keywords))
+            matches.append(
+                RedFlagMatch(
+                    red_flag=red_flag,
+                    matched_keywords=matched_keywords,
+                )
+            )
 
     return matches
